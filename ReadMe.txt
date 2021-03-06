@@ -8,7 +8,8 @@ A good internet connection
 
 How to install and run for linux and macos:-
 1. cd to directory .....
-2. give write permission to file by "chmod +x install_linux_mac.sh" command
+2. give write permission to file by "chmod +x install_for_linux.sh" command
+3. type "./install_for_linux.sh" 
 3. python3 bot.py
 
 
