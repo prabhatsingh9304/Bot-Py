@@ -11,7 +11,8 @@ How to install and run for linux and macos:-
 2. give write permission to file by "chmod +x install_for_linux.sh" command
 3. type "./install_for_linux.sh" 
 3. python3 bot.py
-
+Note:- Mac users please open install_for_linux.sh with any text editor and uncomment the given commands 
+ 
 
 
 
