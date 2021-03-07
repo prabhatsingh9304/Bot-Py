@@ -134,6 +134,7 @@ blue_speak("How can i help you?")
 #time.sleep(2)
 while 1:
     voice_data = record_audio()
+    time.sleep(2)
     if voice_data.strip()=="":
         blue_speak("Try again Later")
         break
