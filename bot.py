@@ -6,12 +6,17 @@ import webbrowser
 import playsound
 import re
 import os
+
 #import gi
 import random
 import time
 from gtts import gTTS
+from sys import platform
+if platform == "linux" or platform == "linux2":
+    PATH="./chromedriver"
+elif platform == "win32":
+    PATH="./chromedriver.exe"
 r=sr.Recognizer()
-PATH="./chromedriver"
 def record_audio(ask = False):
     with sr.Microphone() as source:
         if ask:
@@ -28,8 +33,7 @@ def record_audio(ask = False):
 
 
 def moodle_login():
-    global aaaaa
-    driver = webdriver.Chrome('./chromedriver.exe')
+    driver = webdriver.Chrome(PATH)
     blue_speak("Enter Username ")
     usrn=input()
     blue_speak("Enter Password ")
@@ -66,8 +70,8 @@ def search_studm():
     webbrowser.get().open(yurl)
     blue_speak("Here is what I found for " + search)
 def p_songs():
-    song=record_audio(blue_speak('Can you say me the song name'))
-    driver = webdriver.Chrome('./chromedriver.exe')
+    song=record_audio(blue_speak('Tell me the song name'))
+    driver = webdriver.Chrome(PATH)
     link="https://music.youtube.com/search?q=" + song
     driver.get(link)
     try:
@@ -88,7 +92,7 @@ def p_songs():
                 p_songs()
             else:
                 driver.quit()
-                exit()
+                return 0
 
     except NoSuchElementException:
         blue_speak("No song found")
@@ -97,10 +101,17 @@ def p_songs():
 def respond(voice_data):
     if 'login' in voice_data:
         moodle_login()
-    if 'song' in voice_data or "music" in voice_data:
+    elif 'song' in voice_data or "music" in voice_data:
         p_songs()    
-    if 'study material' in voice_data:
+    elif 'study material' in voice_data:
         search_studm()
+    elif 'your' in voice_data and 'name' in voice_data:
+        blue_speak("My name is Blue\nWhat's your name?")
+        name = record_audio()
+        if name !="":
+            blue_speak("Hello %s"%name)
+    else:
+        blue_speak("I don't know how to help with that but I am learning.")
   
 def blue_speak(audio_string):
     print(audio_string)
