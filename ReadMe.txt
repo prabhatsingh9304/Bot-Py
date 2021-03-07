@@ -43,6 +43,10 @@ e.g.2:- search for study material
 
 7.you can play dice game by just saying a sentence contain "die" or "dice"
 
+resource we are using?
+1.We are using ipdata API for getting location
+2.We are using openweathermap API for weatherforcasting
+
 
 
 
