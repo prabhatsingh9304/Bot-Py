@@ -16,12 +16,32 @@ How to install and run for windows:-
 1. run install_for_windows.bat
 2. type "python3 bot.py" in cmd
 
-What is Bot-py?
-Bot-py is a simple voice assistant bot written in python to automate some specific task such as moodle_login, weather forcasting for current location,
-playing song on youtube music,
- 
+What is Bot-Py?
+Bot-py is a simple voice assistant bot written in python to automate some specific task such as moodle_login, weather forcasting for current location and many things.
 
+Features of Bot-Py:-
+1.Simple Voice recognition
 
+2.You can can ask her name
+e.g.:- what is your name?
+
+3.Login to moodle by just saying a sentence which much contain word "login"
+e.g.1:- i want to login to moodle
+e.g.2:- login to moodle
+
+4.Play song by just saying a sentence which much contain words "song" or "music"
+e.g.1:- play a song
+e.g.2:-i want to listen a music
+
+5.Weather forcating by just saying a sentence which must contain word "weather"
+e.g.1:- how is the weather today?
+e.g.2:-can you please tell about weather?
+
+6.Search for study material by just saying a sentence which must contain word "study material"
+e.g.1:- i want to search for study material
+e.g.2:- search for study material
+
+7.you can play dice game by just saying a sentence contain "die" or "dice"
 
 
 
