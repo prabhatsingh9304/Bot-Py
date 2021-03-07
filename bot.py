@@ -6,7 +6,7 @@ import webbrowser
 import playsound
 import re
 import os
-import gi
+#import gi
 import random
 import time
 from gtts import gTTS
@@ -28,7 +28,8 @@ def record_audio(ask = False):
 
 
 def moodle_login():
-    driver = webdriver.Chrome(PATH)
+    global aaaaa
+    driver = webdriver.Chrome('./chromedriver.exe')
     blue_speak("Enter Username ")
     usrn=input()
     blue_speak("Enter Password ")
@@ -38,7 +39,7 @@ def moodle_login():
     password=driver.find_element_by_id("password")
     text = driver.find_element_by_id("login").text
     cap=driver.find_element_by_id("valuepkg3")
-    Number = [int(s) for s in re.findall(r'-?\d+\.?\d*', text)]
+    Number=[int(s) for s in text.split()if s.isdigit()]
     if 'add' in text:
         result=Number[0]+Number[1]
     elif 'subtract' in text:
@@ -53,7 +54,12 @@ def moodle_login():
     submit=driver.find_element_by_id("loginbtn")
     submit.click()
 def search_studm():
-    search= record_audio(blue_speak('Can You Say me the topic name'))
+    for i in range(3):
+        search= record_audio(blue_speak('Can You Say me the topic name'))
+        if search.strip()!="":
+            break
+        else:
+            blue_speak("Say that again")
     url = "https://google.com/search?q=" + search +' nptel'
     yurl= "https://www.youtube.com/results?search_query=" + search + ' nptel' 
     webbrowser.get().open(url)
@@ -61,7 +67,7 @@ def search_studm():
     blue_speak("Here is what I found for " + search)
 def p_songs():
     song=record_audio(blue_speak('Can you say me the song name'))
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Chrome('./chromedriver.exe')
     link="https://music.youtube.com/search?q=" + song
     driver.get(link)
     try:
@@ -91,12 +97,10 @@ def p_songs():
 def respond(voice_data):
     if 'login' in voice_data:
         moodle_login()
-    if 'song' in voice_data:
+    if 'song' in voice_data or "music" in voice_data:
         p_songs()    
     if 'study material' in voice_data:
         search_studm()
-    if 'exit' in voice_data:
-        exit()
   
 def blue_speak(audio_string):
     print(audio_string)
@@ -107,7 +111,16 @@ def blue_speak(audio_string):
     playsound.playsound(audio_file)
     os.remove(audio_file)
 blue_speak("How can i help you?")
-time.sleep(2)
+#time.sleep(2)
 while 1:
     voice_data = record_audio()
-    respond(voice_data) 
+    if voice_data.strip()=="":
+        blue_speak("Try again Later")
+        break
+    elif "exit" in voice_data or "quit" in voice_data:
+        blue_speak("Thank You")
+        break
+    print(voice_data)
+    respond(voice_data)
+    blue_speak("Anything else? ")
+    
