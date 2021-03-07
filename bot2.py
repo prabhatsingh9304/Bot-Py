@@ -4,10 +4,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import webbrowser
 import playsound
-import re
 import os
 from requests import get
-#import gi
 import random
 import time
 from gtts import gTTS
