@@ -79,16 +79,18 @@ def p_songs():
     try:
         play=driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/div[3]/ytmusic-search-page/ytmusic-section-list-renderer/div[2]/ytmusic-shelf-renderer[2]/div[2]/ytmusic-responsive-list-item-renderer[1]/div[1]/ytmusic-item-thumbnail-overlay-renderer/div/ytmusic-play-button-renderer/div/yt-icon')
         play.click()
-        time.sleep(10)
+        time.sleep(5)
         stop=driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/ytmusic-player-bar/div[1]/div/paper-icon-button[2]/iron-icon')
         stop.click()
         blue_speak("Do you want to Continue This song? yes or no")
         decide1=record_audio()
-        if 'no' in decide1.lower():
-            driver.quit()
-        else:
+        if 'yes' in decide1.lower():
             stop=driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/ytmusic-player-bar/div[1]/div/paper-icon-button[2]/iron-icon')
             stop.click()
+            time.sleep(170)
+        else:
+            driver.quit()
+           
     except NoSuchElementException:
         blue_speak("No song found")
 
@@ -131,10 +133,8 @@ def blue_speak(audio_string):
     playsound.playsound(audio_file)
     os.remove(audio_file)
 blue_speak("How can i help you?")
-#time.sleep(2)
 while 1:
     voice_data = record_audio()
-    time.sleep(2)
     if voice_data.strip()=="":
         blue_speak("Try again Later")
         break
