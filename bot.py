@@ -1,5 +1,4 @@
 import speech_recognition as sr
-from requests import get
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
@@ -145,12 +144,6 @@ def blue_speak(audio_string):
     tts.save(audio_file)
     playsound.playsound(audio_file)
     os.remove(audio_file)
-def weather():
-    Ip_info = get('https://api.ipdata.co?api-key=test').json()
-    latlong=[Ip_info['latitude'],Ip_info['longitude']]
-    weather = get('http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid=cd809c3984afb49d5e8a9ff4d8e7b405'.format(latlong[0], latlong[1])).json()
-    weather_info1=weather.values()
-    print(weather_info1)
 blue_speak("How can i help you?")
 #time.sleep(2)
 while 1:
@@ -164,4 +157,3 @@ while 1:
     print(voice_data)
     respond(voice_data)
     blue_speak("Anything else? ")
-    
